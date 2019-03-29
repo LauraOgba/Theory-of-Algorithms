@@ -27,7 +27,7 @@ printf("ive found a block that's less than 55 bytes!\n");
 M.e[nobytes] = 0x80;
 while (nobytes < 56){
     nobytes = nobytes + 1;
-    M.e[nobytes] 0x00;
+    M.s[nobytes] = 0x00;
 }
 M.s[7] = nobits;
     }
