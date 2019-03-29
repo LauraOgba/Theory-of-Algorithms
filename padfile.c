@@ -2,9 +2,9 @@
 #include <stdint.h>
 
 union point{
-    uint_8 e[64];
-    uint_32 t[16];
-    uint_64 s[8];
+    uint8_t e[64];
+    uint32_t t[16];
+    uint64_t s[8];
 
 };
 
@@ -12,14 +12,14 @@ int main(int argc, char *argv[]){
 
 union msgblock M;
 
-uint_64 nobytes;
+uint64_t nobytes;
 
 FILE* f;
-f = fopen(argv[1], 'r');
+f = fopen(argv[1], "r");
 
 while (!feof(f)){
     nobytes = fread(M.e, 1, 64, f);
-    printf("%llu\n", nobytes);
+    printf("%11u\n", nobytes);
 }
 
 fclose(f);
