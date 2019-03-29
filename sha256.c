@@ -15,7 +15,6 @@ void sha256();
 uint32_t sig0(uint32_t x);
 uint32_t sig1(uint32_t x);
 
-
 //see section 3.2 for definitions.
 uint32_t rotr(uint32_t n, uint32_t x);
 uint32_t shr(uint32_t n, uint32_t x);
@@ -71,7 +70,7 @@ e = H[4]; f = H[5]; g = H[6]; h = H[7];
 
 //step 3.
 for (t = 0; t < 64; t++){
-	T1 = h + SIG_1(e) + Ch(e, f, g) + K(t) + W(t);
+	T1 = h + SIG_1(e) + Ch(e, f, g) + K[t] + W[t];
 	T2 = SIG_0(a) + Maj(a, b, c);
 	h = g;
 	g = f;
