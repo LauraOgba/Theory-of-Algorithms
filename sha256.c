@@ -82,10 +82,10 @@ uint32_t K[] = [
  };
 
 // The current message block.
- uint32_t M[16];
+ uint32_t M[16] = {0, 0, 0, 0, 0, 0, 0, 0};
  
  // For looping.
- int t;
+ int i, t;
 
 // From page 22, W[t] = M[t]for 0 <= 15.
  for (t = 0; t < 16; t++)
@@ -124,6 +124,8 @@ H[5] = f + H[5];
 H[6] = g + H[6];
 H[7] = h + H[7];
 
+
+printf("%X %X %X %X %X %X %X %X\n", H[0], H[1], H[3], H[4], H[5], H[6], H[7]);
 }
 
 //see section 3.2 for definitions.
