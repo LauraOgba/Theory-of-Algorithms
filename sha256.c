@@ -19,6 +19,16 @@ uint32_t sig1(uint32_t x);
 uint32_t rotr(uint32_t n, uint32_t x);
 uint32_t shr(uint32_t n, uint32_t x);
 
+//see section 4.1.2 for definitions.
+uint32_t SIG0(uint32_t x);
+uint32_t SIG1(uint32_t x);
+
+//see section 4.1.2 for definitions
+uint32_t Ch(uint32_t x, uint32_t y, uint32_t z);
+uint32_t Maj(uint32_t x, uint32_t y, uint32_t z);
+
+
+
 int main(int argc, char *argv[]){
 
  sha256();	
@@ -62,7 +72,7 @@ void sha256(){
 
  //From page 22, W[t] = ...
  for (t = 16; t < 64; t++)
-	sig1(W[t-2]) + W[t-7] + sig0(W[t-15]) + W[t-16];
+	W[t] = sig1(W[t-2]) + W[t-7] + sig0(W[t-15]) + W[t-16];
 
 //Initialize a, b, c, d, e, f, g and h as per step 2, page 22.
 a = H[0]; b = H[1]; c = H[2]; d = H[3];
@@ -113,6 +123,22 @@ return (rotr(7,x) ^ rotr(18, x) ^ shr(3, x));
 uint32_t sig1(uint32_t x){
 //see section 3.2 and 4.1.2 for definitions
 return (rotr(17,x) ^ rotr(19, x) ^ shr(10, x));
+}
+
+//see section 4.1.2 for definitions.
+uint32_t SIG0(uint32_t x){
+	return (rotr (2, x) ^ rotr(13, x) ^ rotr(22, x));
+}
+uint32_t SIG1(uint32_t x){
+	return (rotr (6, x) ^ rotr(11, x) ^ rotr(25, x));
+}
+
+//see section 4.1.2 for definitions
+uint32_t Ch(uint32_t x, uint32_t y, uint32_t z){
+	return ((x & y) ^ ((!x) & z)); 
+}
+uint32_t Maj(uint32_t x, uint32_t y, uint32_t z){
+	return ((x & y) ^ (x & z) ^ (y & z));
 }
 
 
