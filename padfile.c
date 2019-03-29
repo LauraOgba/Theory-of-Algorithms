@@ -33,7 +33,7 @@ while (S == READ){
         M.e[nobytes] = 0x80;
         while (nobytes < 56){
     nobytes = nobytes + 1;
-    M.s[nobytes] = 0x00;
+    M.e[nobytes] = 0x00;
 }
 M.s[7] = nobits;
 S = FINISH;
@@ -55,7 +55,7 @@ if (S == PAD0 || S == PAD1){
         M.s[7] = nobits;
 }
 if (S == PAD1)
-M.e[0] 0x80;
+M.e[0] =0x80;
 
 fclose(f);
 
