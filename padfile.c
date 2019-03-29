@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-union point{
+union msgblock{
     uint8_t e[64];
     uint32_t t[16];
     uint64_t s[8];
