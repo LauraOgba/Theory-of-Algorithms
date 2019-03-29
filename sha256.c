@@ -62,7 +62,7 @@ void sha256(){
 
 
  //From page 22, W[t] = ...
- for (t = 16; t < 64; t++;
+ for (t = 16; t < 64; t++)
 	sigl(W[t-2]) + W[t-7] + sig0(W[t-15]) + W[t-16];
 
 //Initialize a, b, c, d, e, f, g and h as per step 2, page 22.
@@ -83,6 +83,15 @@ for (t = 0; t < 64; t++;){
 	a = T1 + T2;
 }
 
+//step 4.
+H[0] = a + H[0];
+H[1] = b + H[1];
+H[2] = c + H[2];
+H[3] = d + H[3];
+H[4] = e + H[4];
+H[5] = f + H[5];
+H[6] = g + H[6];
+H[7] = h + H[7];
 
 }
 
