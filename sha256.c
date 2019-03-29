@@ -39,7 +39,7 @@ void sha256(){
 
 // The Hash Value
 // The values come from section 5.3.3
- uint32_t[8] = {
+ uint32_t H[8] = {
 	 0x6a09e667
 	,0xbb67ae85
 	,0x3c6ef372
@@ -70,7 +70,7 @@ a = H[0]; b = H[1]; c = H[2]; d = H[3];
 e = H[4]; f = H[5]; g = H[6]; h = H[7];
 
 //step 3.
-for (t = 0; t < 64; t++;){
+for (t = 0; t < 64; t++){
 	T1 = h + SIG_1(e) + CH(e, f, g) + K(t) + W(t);
 	T2 = SIG_0(a) + Maj(a, b, c);
 	h = g;
