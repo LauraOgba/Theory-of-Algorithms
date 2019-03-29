@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
 void sha256(){
 
 //The K constants defined in section 4.2.2.
-uint32_t K[] = [
+uint32_t K[] = {
 0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 
 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 
@@ -58,7 +58,7 @@ uint32_t K[] = [
 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 
 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
 
-];
+};
 
 
  // Message schedule (Section 6.2).	
