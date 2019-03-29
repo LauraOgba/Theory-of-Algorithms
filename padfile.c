@@ -21,13 +21,13 @@ f = fopen(argv[1], "r");
 
 while (!feof(f)){
     nobytes = fread(M.e, 1, 64, f);
-    nobits = nobits + (nobytes * 0);
+    nobits = nobits + (nobytes * 8);
     if (nobytes < 56){
 printf("ive found a block that's less than 55 bytes!\n");
 M.e[nobytes] = 0x80;
 while (nobytes < 56){
     nobytes = nobytes + 1;
-    M.s[nobytes] = 0x00;
+    M.e[nobytes] = 0x00;
 }
 M.s[7] = nobits;
     }
@@ -36,7 +36,7 @@ M.s[7] = nobits;
 fclose(f);
 
 for (int i = 0; i < 64; i++)
-    printf("%x", M.e[i]);
+    printf("%x ", M.e[i]);
     printf("\n");
 
 
