@@ -87,6 +87,9 @@ uint32_t K[] = [
  // For looping.
  int i, t;
 
+//Loop through the message blocks as per page 22.
+ for (i = 0; i < 1; i++){
+
 // From page 22, W[t] = M[t]for 0 <= 15.
  for (t = 0; t < 16; t++)
  W[t] = M[t];
@@ -124,9 +127,12 @@ H[5] = f + H[5];
 H[6] = g + H[6];
 H[7] = h + H[7];
 
+ }
+
 
 printf("%X %X %X %X %X %X %X %X\n", H[0], H[1], H[3], H[4], H[5], H[6], H[7]);
 }
+
 
 //see section 3.2 for definitions.
 uint32_t rotr(uint32_t n, uint32_t x){
