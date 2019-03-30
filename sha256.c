@@ -44,8 +44,21 @@
 
 	// Open the file given as first command line arguement.
 	FILE* msgf;
-	msgf = fopen(argv[1], "r");
-	// Should do error checking here.
+
+	// Error checking of files.
+	 if(argc !=2){
+		 	  printf("file not supplied...");
+			  	  return 0;
+				    }
+	  
+	   msgf = fopen(argv[1], "r");
+	     
+	     if(msgf == NULL){
+		       	  printf("invalid file name");
+			  	  return 1;
+				    }
+
+
 
 	// Run the secure hash algorithm on the file.
 	sha256(msgf);	
@@ -151,6 +164,9 @@
 	}
 
 	printf("%08X %08X %08X %08X %08X %08X %08X %08X\n", H[0], H[1], H[3], H[4], H[5], H[6], H[7]);
+
+	
+
 	}
 		
 	//see section 3.2 for definitions.
