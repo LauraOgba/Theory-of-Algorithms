@@ -14,6 +14,13 @@
 		uint64_t s[8];
 		};
 
+	
+	// Define the units for swapping big Edian to small Endian.
+	#define SWAP_UINT32(x) (((x) >> 24) | (((x) & 0x00FF0000) >> 8) | (((x) & 0x0000FF00) << 8) | ((x) << 24))
+	#define IS_BIG_ENDIAN (*(uint16_t *)"\0\xff" < 0x100)
+	
+	
+	
 	// A flag for where we are in reading the file.
 	enum status {READ, PAD0, PAD1, FINISH};
 
@@ -165,9 +172,16 @@
 
 	printf("%08X %08X %08X %08X %08X %08X %08X %08X\n", H[0], H[1], H[3], H[4], H[5], H[6], H[7]);
 
-	
+	// Converting from big Endian to small Endian and vice versa
+	if(IS_BIG_ENDIAN){
+       		printf("%08x %08x %08x %08x %08x %08x %08x %08x\n\n",H[0], H[1],H[2],H[3], H[4], H[5], H[6],  H[7]);
+	 }else{
+		 printf("%08x %08x %08x %08x %08x %08x %08x %08x\n",SWAP_UINT32(H[0]),SWAP_UINT32(H[1]),SWAP_UINT32(H[2]),
+				 SWAP_UINT32(H[3]),SWAP_UINT32(H[4]),SWAP_UINT32(H[5]),SWAP_UINT32(H[6]),SWAP_UINT32(H[7]));
+  }
+ }	
 
-	}
+	
 		
 	//see section 3.2 for definitions.
 	uint32_t rotr(uint32_t n, uint32_t x){
