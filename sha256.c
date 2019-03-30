@@ -46,25 +46,26 @@
 	// Retrieves the next message block
 	int nextmsgblock(FILE * msgf, union msgblock *M, enum status *S, uint64_t  *nobits);
 
+
+	
 	// Start of the show.
 	int main(int argc, char *argv[]){
 
 	// Open the file given as first command line arguement.
-	FILE* msgf;
-
-	// Error checking of files.
-	 if(argc !=2){
-		 	  printf("file not supplied...");
-			  	  return 0;
-				    }
-	  
-	   msgf = fopen(argv[1], "r");
-	     
-	     if(msgf == NULL){
-		       	  printf("invalid file name");
-			  	  return 1;
-				    }
-
+	FILE  *msgf;
+		
+	if(argc !=2){
+		printf("file not supplied...");
+	  	  return 0;
+	  }
+ 
+  msgf= fopen(argv[1], "r");
+  
+  if(msgf == NULL){
+	  	  printf("invalid file name");
+			  return 1;
+			  }  
+	
 
 
 	// Run the secure hash algorithm on the file.
@@ -169,14 +170,13 @@
 	H[6] = g + H[6]; H[7] = h + H[7];
 
 	}
-
-	printf("%08X %08X %08X %08X %08X %08X %08X %08X\n", H[0], H[1], H[3], H[4], H[5], H[6], H[7]);
-
+	printf("\n");
+	//printf("%08X%08X%08X%08X%08X%08X%08X%08X\n", H[0], H[1], H[3], H[4], H[5], H[6], H[7]);
 	// Converting from big Endian to small Endian and vice versa
 	if(IS_BIG_ENDIAN){
-       		printf("%08x %08x %08x %08x %08x %08x %08x %08x\n\n",H[0], H[1],H[2],H[3], H[4], H[5], H[6],  H[7]);
+       		printf("%08x%08x%08x%08x%08x%08x%08x%08x\n",H[0], H[1],H[2],H[3], H[4], H[5], H[6],  H[7]);
 	 }else{
-		 printf("%08x %08x %08x %08x %08x %08x %08x %08x\n",SWAP_UINT32(H[0]),SWAP_UINT32(H[1]),SWAP_UINT32(H[2]),
+		 printf("%08x%08x%08x%08x%08x%08x%08x%08x\n",SWAP_UINT32(H[0]),SWAP_UINT32(H[1]),SWAP_UINT32(H[2]),
 				 SWAP_UINT32(H[3]),SWAP_UINT32(H[4]),SWAP_UINT32(H[5]),SWAP_UINT32(H[6]),SWAP_UINT32(H[7]));
   }
  }	
