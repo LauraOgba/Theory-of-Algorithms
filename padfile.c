@@ -24,6 +24,15 @@ f = fopen(argv[1], "r");
 
 int i;
 
+// Knowing if there's an empy file, by checking its size
+ if (NULL != f) {
+   fseek (f,0,SEEK_END);
+   int size = ftell(f);   
+   if(0 == size){ 		  		  		  		  		    printf("file is empty\n"); 		  		  		  		    		  }
+else if (size > 0){
+fseek (f,0,SEEK_SET);
+}
+}
 while (S == READ){
     nobytes = fread(M.e, 1, 64, f);
     printf("Read %211u bytes\n", nobytes);
@@ -65,3 +74,4 @@ for (int i = 0; i < 64; i++)
 
 return 0;
 }
+
