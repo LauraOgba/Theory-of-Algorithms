@@ -34,7 +34,7 @@
 			uint32_t Maj(uint32_t x, uint32_t y, uint32_t z);
 
 			// Calculates the SHA256 hash of a file.
-			void sha256();
+			void sha256(FILE *f);
 
 			// Retrieves the next message block
 			int nextmsgblock(FILE * f, union msgblock *M, enum status *S, int  *nobits);
@@ -100,14 +100,10 @@
 			// The Hash Value
 			// The values come from section 5.3.3
 			uint32_t H[8] = {
-				0x6a09e667
-				,0xbb67ae85
-				,0x3c6ef372
-				,0xa54ff53a
-				,0x510e527f
-				,0x9b05688c
-				,0x1f83d9ab
-				,0x5be0cd19
+				 0x6a09e667 ,0xbb67ae85
+				,0x3c6ef372 ,0xa54ff53a
+				,0x510e527f ,0x9b05688c
+				,0x1f83d9ab ,0x5be0cd19
 			};
 			
 			// For looping.
@@ -144,21 +140,15 @@
 			}
 
 			//step 4.
-			H[0] = a + H[0];
-			H[1] = b + H[1];
-			H[2] = c + H[2];
-			H[3] = d + H[3];
-			H[4] = e + H[4];
-			H[5] = f + H[5];
-			H[6] = g + H[6];
-			H[7] = h + H[7];
+			H[0] = a + H[0]; H[1] = b + H[1];
+			H[2] = c + H[2]; H[3] = d + H[3];
+			H[4] = e + H[4]; H[5] = f + H[5];
+			H[6] = g + H[6]; H[7] = h + H[7];
 
 			}
-
 
 			printf("%X %X %X %X %X %X %X %X\n", H[0], H[1], H[3], H[4], H[5], H[6], H[7]);
 			}
-
 
 			//see section 3.2 for definitions.
 			uint32_t rotr(uint32_t n, uint32_t x){
@@ -172,7 +162,7 @@
 
 			uint32_t sig0(uint32_t x){
 			// See section 3.2 for definitions and 4.1.2 also
-			return (rotr(7,x) ^ rotr(18, x) ^ shr(3, x));
+			return (rotr(7, x) ^ rotr(18, x) ^ shr(3, x));
 			}
 
 
@@ -265,5 +255,3 @@
 			return 1;
 
 			}
-
-
