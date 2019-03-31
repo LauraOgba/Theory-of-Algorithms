@@ -55,16 +55,16 @@
 	FILE  *msgf;
 		
 	if(argc !=2){
-		printf("file not supplied...");
+		printf("file not supplied..\n.");
 	  	  return 0;
-	  }
+      	}
  
-  msgf= fopen(argv[1], "r");
+  		msgf= fopen(argv[1], "r");
   
-  if(msgf == NULL){
-	  	  printf("invalid file name");
-			  return 1;
-			  }  
+  	if(msgf == NULL){
+	      	printf("invalid file name\n");
+		  return 1;
+	}  
 	
 
 
@@ -174,12 +174,23 @@
 	//printf("%08X%08X%08X%08X%08X%08X%08X%08X\n", H[0], H[1], H[3], H[4], H[5], H[6], H[7]);
 	// Converting from big Endian to small Endian and vice versa
 	if(IS_BIG_ENDIAN){
-       		printf("%08x%08x%08x%08x%08x%08x%08x%08x\n",H[0], H[1],H[2],H[3], H[4], H[5], H[6],  H[7]);
+       		printf("%08x%08x%08x%08x%08x%08x%08x%08x\n",
+				H[0], H[1],
+				H[2], H[3], 
+				H[4], H[5],
+			       	H[6], H[7]);
 	 }else{
-		 printf("%08x%08x%08x%08x%08x%08x%08x%08x\n",SWAP_UINT32(H[0]),SWAP_UINT32(H[1]),SWAP_UINT32(H[2]),
-				 SWAP_UINT32(H[3]),SWAP_UINT32(H[4]),SWAP_UINT32(H[5]),SWAP_UINT32(H[6]),SWAP_UINT32(H[7]));
-  }
- }	
+		 printf("%08x%08x%08x%08x%08x%08x%08x%08x\n",
+				 SWAP_UINT32(H[0]),
+				 SWAP_UINT32(H[1]),
+				 SWAP_UINT32(H[2]),
+				 SWAP_UINT32(H[3]),
+				 SWAP_UINT32(H[4]),
+				 SWAP_UINT32(H[5]),
+				 SWAP_UINT32(H[6]),
+				 SWAP_UINT32(H[7]));
+	 }
+	}	
 
 	
 		
