@@ -79,13 +79,22 @@ The byte order is the order in which bytes are stored to create larger data type
 
 ## References:
 1- SHA-256 Part 1: https://web.microsoftstream.com/video/db7c03be-5902-4575-9629-34d176ff1366
+
 2- SHA-256 Part 2: https://web.microsoftstream.com/video/2a86a2ac-aafb-46e0-a278-a3faa1d13cbf
+
 3- Unions in C: https://web.microsoftstream.com/video/78dc0c8d-a017-48c8-99da-0714866f35cb
+
 4- Padding for SHA256: https://web.microsoftstream.com/video/9daaf80b-9c4c-4fdc-9ef6-159e0e4ccc13
+
 5- SHA256: Finishing out the padding: https://web.microsoftstream.com/video/200e71ec-1dc1-47a4-9de8-6f58781e3f38
+
 6- Finishing out the SHA256 algorithm: https://web.microsoftstream.com/video/f823809a-d8df-4e12-b243-e1f8ed76b93f
+
 7- FEDERAL INFORMATION PROCESSING STANDARDS PUBLICATION https://ws680.nist.gov/publication/get_pdf.cfm?pub_id=910977
+
 8- Macros: https://people.gnome.org/~desrt/glib-docs/glib-Byte-Order-Macros.html
+
 9- Converting the Endian:http://www.firmcodes.com/write-c-program-convert-little-endian-big-endian-integer/
+
 10. Reading a text file: https://www.quora.com/How-do-I-check-file-is-empty-in-c-file-handling-I-am-trying-to-write-a-variable-in-file-like-m-0-when-file-is-empty and http://www.runoob.com/cprogramming/c-function-fread.html
   
