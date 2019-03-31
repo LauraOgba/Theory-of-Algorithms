@@ -19,8 +19,12 @@
 	#define SWAP_UINT32(x) (((x) >> 24) | (((x) & 0x00FF0000) >> 8) | (((x) & 0x0000FF00) << 8) | ((x) << 24))
 	#define IS_BIG_ENDIAN (*(uint16_t *)"\0\xff" < 0x100)
 	
-	
-	
+	#define SWAP_UINT64(val) \
+	( (((val) >> 56) & 0x00000000000000FF) | (((val) >> 40) & 0x000000000000FF00) | \
+   	 (((val) >> 24) & 0x0000000000FF0000) | (((val) >>  8) & 0x00000000FF000000) | \
+ 	 (((val) <<  8) & 0x000000FF00000000) | (((val) << 24) & 0x0000FF0000000000) | \
+ 	 (((val) << 40) & 0x00FF000000000000) | (((val) << 56) & 0xFF00000000000000) )  
+
 	// A flag for where we are in reading the file.
 	enum status {READ, PAD0, PAD1, FINISH};
 
@@ -137,7 +141,7 @@
 
 	// From page 22, W[t] = M[t]for 0 <= 15.
 	for (t = 0; t < 16; t++)
-		W[t] = M.t[t];
+		W[t] = SWAP_UINT32(M.t[t]);
 
 
 	//From page 22, W[t] = ...
@@ -225,7 +229,7 @@
 
 	//see section 4.1.2 for definitions
 	uint32_t Ch(uint32_t x, uint32_t y, uint32_t z){
-	return ((x & y) ^ ((!x) & z)); 
+	return ((x & y) ^ ((~x) & z)); 
 	}
 	uint32_t Maj(uint32_t x, uint32_t y, uint32_t z){
 	return ((x & y) ^ (x & z) ^ (y & z));
@@ -249,7 +253,7 @@
 	for (i = 0; i < 56; i++)
 		M->e[i] = 0x00;
 		// Set the last 64 bits to the number of bits in the file (should be big-endian).
-		M->s[7] = *nobits;
+		M->s[7] = SWAP_UINT64 (*nobits);
 		// Tell S we are finished.
 		*S = FINISH;
 		// If S was PAD1, then set te first bit of M to one.
